@@ -28,6 +28,7 @@ class clothesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
     var region = MKCoordinateRegion()
     var mapItems = [MKMapItem]()
     var selectedMapItem = MKMapItem()
+    var locations: [CLLocation] = []
 
     override func viewDidLoad() {
         
@@ -110,12 +111,6 @@ class clothesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? ClothesDetailsViewController {
-            destination.selectedMapItem = selectedMapItem
-        }
-    }
-    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         //        print(mapItems.count)
@@ -143,6 +138,28 @@ class clothesMapViewController: UIViewController, CLLocationManagerDelegate, MKM
         return false
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowClothesDetailsFromTable", sender: nil)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "ShowClothesDetailsSegue":
+            if let destination = segue.destination as? ClothesDetailsViewController {
+                destination.selectedMapItem = selectedMapItem
+            }
+        case "ShowClothesDetailsFromTable":
+            let dvc = segue.destination as! ClothesDetailsViewController
+            let index = tableView.indexPathForSelectedRow?.row
+            dvc.selectedMapItem = mapItems[index!]
+        default: break
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let index = self.tableView.indexPathForSelectedRow{
+            self.tableView.deselectRow(at: index, animated: true)
+        }
+    }
 }
 

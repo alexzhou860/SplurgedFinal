@@ -22,7 +22,7 @@ class foodMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
     var locations: [CLLocation] = []
     var mapItems = [MKMapItem]()
     var food = String()
-  
+    
     
     
     override func viewDidLoad() {
@@ -56,10 +56,10 @@ class foodMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         let search = MKLocalSearch(request: request)
         search.start { (response, error) in
             if let response = response {
-//                for mapItem in response.mapItems {
-//                    self.mapItems.append(mapItem)
-////                    print(self.mapItems.count)
-//                }
+                //                for mapItem in response.mapItems {
+                //                    self.mapItems.append(mapItem)
+                ////                    print(self.mapItems.count)
+                //                }
                 for mapItem in response.mapItems {
                     let annotation = MKPointAnnotation()
                     annotation.coordinate = mapItem.placemark.coordinate
@@ -134,7 +134,7 @@ class foodMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
     //    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-//        print(mapItems.count)
+        //        print(mapItems.count)
         return 1
     }
     
@@ -149,25 +149,37 @@ class foodMapViewController: UIViewController, CLLocationManagerDelegate, MKMapV
         print(mapItems.count)
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell" , for: indexPath)
         let mapItem = mapItems[indexPath.row]
-//        print(mapItem)
+        //        print(mapItem)
         cell.textLabel!.text = mapItem.name
         return cell
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        print(mapItems.count)
+        //        print(mapItems.count)
         return false
     }
     
-    //        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    //            let dvc = segue.destination as! foodMapViewController
-    //            let index = tableView.indexPathForSelectedRow?.row
-    //            dvc.food = foods[index!]
-    //        }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowFoodDetailsFromTable", sender: nil)
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? FoodDetailsViewController {
-            destination.selectedMapItem = selectedMapItem
+        switch segue.identifier {
+        case "ShowFoodDetailsSegue":
+            if let destination = segue.destination as? FoodDetailsViewController {
+                destination.selectedMapItem = selectedMapItem
+            }
+        case "ShowFoodDetailsFromTable":
+            let dvc = segue.destination as! FoodDetailsViewController
+            let index = tableView.indexPathForSelectedRow?.row
+            dvc.selectedMapItem = mapItems[index!]
+        default: break
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        if let index = self.tableView.indexPathForSelectedRow{
+            self.tableView.deselectRow(at: index, animated: true)
         }
     }
 }

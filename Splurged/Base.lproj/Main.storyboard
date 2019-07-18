@@ -133,6 +133,7 @@
                         <outlet property="foodMap" destination="0Ot-CR-7Bb" id="UCB-gU-rcG"/>
                         <outlet property="tableView" destination="Mqu-fW-gMf" id="FuR-cy-4r0"/>
                         <segue destination="7vB-nR-WJN" kind="show" identifier="ShowFoodDetailsSegue" id="RUC-F2-srs"/>
+                        <segue destination="7vB-nR-WJN" kind="show" identifier="ShowFoodDetailsFromTable" id="hmT-IA-BKK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Epg-g4-YGY" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -148,14 +149,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VgZ-6d-xFa">
-                                <rect key="frame" x="118" y="291" width="200" height="50"/>
+                                <rect key="frame" x="107" y="520" width="200" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbt-YS-hmB">
-                                <rect key="frame" x="289" y="571" width="93" height="50"/>
+                                <rect key="frame" x="301" y="777" width="93" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92386513948440552" green="0.70094889402389526" blue="0.21768662333488464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -168,14 +169,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y2N-Jo-hXr">
-                                <rect key="frame" x="118" y="142" width="200" height="50"/>
+                                <rect key="frame" x="107" y="409" width="200" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STJ-ip-mAE">
-                                <rect key="frame" x="20" y="571" width="113" height="50"/>
+                                <rect key="frame" x="20" y="777" width="113" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92386513948440552" green="0.70094889402389526" blue="0.21768662333488464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
@@ -187,8 +188,12 @@
                                     <action selector="onDirectionsButtonTapped:" destination="7vB-nR-WJN" eventType="touchUpInside" id="LGh-Mg-nNS"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Uc6-l2-O9p">
+                                <rect key="frame" x="0.0" y="88" width="414" height="244"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aRF-Od-jNO">
-                                <rect key="frame" x="188" y="465" width="50" height="48"/>
+                                <rect key="frame" x="182" y="635" width="50" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Call"/>
@@ -202,6 +207,7 @@
                     </view>
                     <connections>
                         <outlet property="addressLabel" destination="VgZ-6d-xFa" id="DDv-tp-pSJ"/>
+                        <outlet property="foodDetailsMapView" destination="Uc6-l2-O9p" id="aMk-bP-R2S"/>
                         <outlet property="nameLabel" destination="y2N-Jo-hXr" id="FV2-Xm-mcW"/>
                     </connections>
                 </viewController>
@@ -306,6 +312,7 @@
                         <outlet property="entertainmentMap" destination="IdX-bg-crk" id="XIa-MR-2HO"/>
                         <outlet property="tableView" destination="wPY-d3-pET" id="7ZG-r4-6YI"/>
                         <segue destination="kxQ-1v-IEW" kind="show" identifier="ShowLocationDetailsSegue" id="SRA-NM-cNv"/>
+                        <segue destination="kxQ-1v-IEW" kind="show" identifier="ShowEntertainmentDetailsFromTable" id="uwH-iW-Ebg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tiy-7z-nYu" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -320,20 +327,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DC-Ek-Bzp">
-                                <rect key="frame" x="107" y="137" width="200" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3QB-N3-Xg7">
-                                <rect key="frame" x="107" y="276" width="200" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3QB-N3-Xg7">
+                                <rect key="frame" x="107" y="598" width="200" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UW8-UI-M9L">
-                                <rect key="frame" x="42" y="547" width="97" height="39"/>
+                                <rect key="frame" x="20" y="805" width="97" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92386513948440552" green="0.70094889402389526" blue="0.21768662333488464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -346,7 +347,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fhl-fR-4v2">
-                                <rect key="frame" x="278" y="547" width="78" height="39"/>
+                                <rect key="frame" x="316" y="805" width="78" height="39"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92386513948440552" green="0.70094889402389526" blue="0.21768662333488464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -359,7 +360,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c7k-dG-tiy">
-                                <rect key="frame" x="172" y="418" width="71" height="45"/>
+                                <rect key="frame" x="172" y="712" width="71" height="45"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Call"/>
@@ -367,12 +368,23 @@
                                     <action selector="phoneCallButton:" destination="kxQ-1v-IEW" eventType="touchUpInside" id="1yd-tS-VPS"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="gJl-uy-msL">
+                                <rect key="frame" x="0.0" y="88" width="414" height="258"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1DC-Ek-Bzp">
+                                <rect key="frame" x="107" y="495" width="200" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="VJS-vh-pSs"/>
                     </view>
                     <connections>
                         <outlet property="addressLabel" destination="3QB-N3-Xg7" id="E9t-eO-Npy"/>
+                        <outlet property="entertainmentDetailsMapView" destination="gJl-uy-msL" id="ela-qo-aBt"/>
                         <outlet property="nameLabel" destination="1DC-Ek-Bzp" id="LFc-zh-oCk"/>
                     </connections>
                 </viewController>
@@ -415,6 +427,7 @@
                         <outlet property="clothesMap" destination="YWc-bI-ZbX" id="hma-G4-zic"/>
                         <outlet property="tableView" destination="uVX-Oi-AIb" id="dHd-7W-SGt"/>
                         <segue destination="fnr-Uw-XMO" kind="show" identifier="ShowClothesDetailsSegue" id="1rS-QF-yXd"/>
+                        <segue destination="fnr-Uw-XMO" kind="show" identifier="ShowClothesDetailsFromTable" id="4mI-zP-m5T"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PuY-0R-GWk" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -430,14 +443,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FPG-cc-r61">
-                                <rect key="frame" x="107" y="257" width="200" height="50"/>
+                                <rect key="frame" x="107" y="510" width="200" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HhW-su-Ugm">
-                                <rect key="frame" x="275" y="524" width="108" height="50"/>
+                                <rect key="frame" x="286" y="785" width="108" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92386513948440552" green="0.70094889402389526" blue="0.21768662333488464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -451,14 +464,14 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X1L-J3-icG">
-                                <rect key="frame" x="107" y="124" width="200" height="50"/>
+                                <rect key="frame" x="107" y="390" width="200" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c6d-no-8V8">
-                                <rect key="frame" x="20" y="524" width="132" height="50"/>
+                                <rect key="frame" x="20" y="785" width="132" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.92386513948440552" green="0.70094889402389526" blue="0.21768662333488464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -471,8 +484,12 @@
                                     <action selector="onDirectionsButtonTapped:" destination="7vB-nR-WJN" eventType="touchUpInside" id="uj3-bs-9gh"/>
                                 </connections>
                             </button>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="4uv-31-iD8">
+                                <rect key="frame" x="0.0" y="88" width="414" height="243"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </mapView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tCV-rS-e2P">
-                                <rect key="frame" x="176" y="392" width="63" height="54"/>
+                                <rect key="frame" x="176" y="637" width="63" height="54"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Call"/>
@@ -486,6 +503,7 @@
                     </view>
                     <connections>
                         <outlet property="addressLabel" destination="FPG-cc-r61" id="YFP-4A-Nqa"/>
+                        <outlet property="clothesDetailsMapView" destination="4uv-31-iD8" id="NHY-yx-2fP"/>
                         <outlet property="nameLabel" destination="X1L-J3-icG" id="Dja-Th-1nA"/>
                     </connections>
                 </viewController>
@@ -512,4 +530,9 @@
             <point key="canvasLocation" x="-165.21739130434784" y="114.50892857142857"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="4mI-zP-m5T"/>
+        <segue reference="uwH-iW-Ebg"/>
+        <segue reference="hmT-IA-BKK"/>
+    </inferredMetricsTieBreakers>
 </document>

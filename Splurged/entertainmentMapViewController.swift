@@ -5,13 +5,6 @@
 //  Created by Devesh Bhor on 7/14/19.
 //  Copyright © 2019 iOS. All rights reserved.
 //
-//
-//  foodMapViewController.swift
-//  Splurged
-//
-//  Created by Devesh Bhor on 7/14/19.
-//  Copyright © 2019 iOS. All rights reserved.
-//
 
 import UIKit
 import MapKit
@@ -29,6 +22,8 @@ class entertainmentMapViewController:UIViewController, CLLocationManagerDelegate
     var region = MKCoordinateRegion()
     var mapItems = [MKMapItem]()
     var selectedMapItem = MKMapItem()
+    var locations: [CLLocation] = []
+
     
     
     override func viewDidLoad() {
@@ -102,8 +97,6 @@ class entertainmentMapViewController:UIViewController, CLLocationManagerDelegate
     
     func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         performSegue(withIdentifier: "ShowLocationDetailsSegue", sender: nil)
-        
-        
     }
     
     
@@ -116,11 +109,11 @@ class entertainmentMapViewController:UIViewController, CLLocationManagerDelegate
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destination = segue.destination as? EntertainmentDetailsViewController {
-            destination.selectedMapItem = selectedMapItem
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if let destination = segue.destination as? EntertainmentDetailsViewController {
+//            destination.selectedMapItem = selectedMapItem
+//        }
+//    }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -149,7 +142,28 @@ class entertainmentMapViewController:UIViewController, CLLocationManagerDelegate
         return false
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        performSegue(withIdentifier: "ShowEntertainmentDetailsFromTable", sender: nil)
+    }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "ShowLocationDetailsSegue":
+            if let destination = segue.destination as? EntertainmentDetailsViewController {
+                destination.selectedMapItem = selectedMapItem
+            }
+        case "ShowEntertainmentDetailsFromTable":
+            let dvc = segue.destination as! EntertainmentDetailsViewController
+            let index = tableView.indexPathForSelectedRow?.row
+            dvc.selectedMapItem = mapItems[index!]
+        default: break
+        }
+    }
     
+    override func viewWillAppear(_ animated: Bool) {
+        if let index = self.tableView.indexPathForSelectedRow{
+            self.tableView.deselectRow(at: index, animated: true)
+        }
+    }
 }
 
